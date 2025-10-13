@@ -1,14 +1,15 @@
-import type { CategoriaType } from "./CategoriaType.ts"
+import type { CategoriaType } from "./CategoriaType"
 
 export type BoloType = {
     id: number
     nome: string
+    descricao: string
     preco: number
-    foto: string
-    ingredientes: string
+    peso: number
     destaque: boolean
-    createdAt: string
-    updatedAt: string
+    foto: string
+    createdAt: Date
+    updatedAt: Date
     categoriaId: number
     categoria: CategoriaType
 }

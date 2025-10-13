@@ -26,8 +26,8 @@ export function InputPesquisa({ setBolos }: InputPesquisaProps) {
         setBolos(dados)
     }
 
-    async function mostraTodos() {
-        const response = await fetch(`${apiUrl}/bolos`)
+    async function mostraDestaques() {
+        const response = await fetch(`${apiUrl}/bolos/destaques`)
         const dados = await response.json()
         reset({ termo: "" })
         setBolos(dados)
@@ -43,17 +43,17 @@ export function InputPesquisa({ setBolos }: InputPesquisaProps) {
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
-                    <input type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-stone-900 border border-stone-300 rounded-lg bg-stone-50 focus:ring-amber-800 focus:border-amber-800 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-amber-700 dark:focus:border-amber-700"
-                        placeholder="Pesquise por nome, categoria ou preço" required
+                    <input type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-pink-500 focus:border-pink-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500"
+                        placeholder="Informe o nome, categoria ou descrição do bolo" required 
                         {...register('termo')} />
-                    <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800">
+                    <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-pink-700 hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800">
                         Pesquisar
                     </button>
                 </div>
             </form>
-            <button type="button" className="ms-3 mt-2 focus:outline-none text-white bg-amber-800 hover:bg-amber-900 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-amber-700 dark:hover:bg-amber-800 dark:focus:ring-amber-900"
-                onClick={mostraTodos}>
-                Ver Todos
+            <button type="button" className="ms-3 mt-2 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+                    onClick={mostraDestaques}>
+                Exibir Destaques
             </button>
         </div>
     )

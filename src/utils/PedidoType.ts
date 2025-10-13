@@ -1,14 +1,16 @@
-import type { BoloType } from "./BoloType.ts"
+import type { BoloType } from "./BoloType"
+import type { ClienteType } from "./ClienteType"
 
 export type PedidoType = {
   id: number
-  usuarioId: string
+  clienteId: string
   boloId: number
   bolo: BoloType
+  cliente: ClienteType
   quantidade: number
-  valor_total: number
-  observacoes: string | null
-  status: 'PENDENTE' | 'EM_PREPARO' | 'CONCLUIDO' | 'ENTREGUE' | 'CANCELADO'
+  observacao: string | null
+  dataEntrega: string
+  status: string
   createdAt: string
   updatedAt: string | null
 }
