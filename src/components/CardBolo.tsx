@@ -1,32 +1,65 @@
-import { Link } from "react-router-dom"
-import type { BoloType } from "../utils/BoloType"
+// Documentação:
+// Esta é a nova versão do CardBolo, sem dependências do Flowbite.
+// Recriamos a estrutura do card e do selo "Destaque" usando elementos HTML
+// padrão (`div`, `img`, `span`) e classes utilitárias do Tailwind CSS.
 
-export function CardBolo({data}: {data: BoloType}) {
-    return (
-        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-            <img className="rounded-t-lg" src={data.foto} alt="Foto do Bolo" />
-            <div className="p-5">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    {data.nome}
-                </h5>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    {data.categoria.nome}
-                </p>
-                <p className="mb-3 font-extrabold text-gray-700 dark:text-gray-400">
-                    Preço R$: {Number(data.preco).toLocaleString("pt-br", {
-                        minimumFractionDigits: 2
-                    })}
-                </p>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    Peso: {data.peso} kg
-                </p>
-                <Link to={`/detalhes/${data.id}`} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800">
-                    Ver Detalhes
-                    <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                    </svg>
-                </Link>
-            </div>
+import { type BoloType } from '../utils/BoloType';
+
+interface Props {
+  bolo: BoloType;
+}
+
+export function CardBolo({ bolo }: Props) {
+  return (
+    // Recriando o <Card> do Flowbite com Tailwind:
+    // - `relative`: Necessário para posicionar o selo de destaque.
+    // - `bg-white`: Cor de fundo do card.
+    // - `border border-gray-200`: Adiciona uma borda sutil.
+    // - `rounded-lg`: Deixa as bordas arredondadas.
+    // - `shadow`: Adiciona uma sombra sutil.
+    // - `overflow-hidden`: Garante que a imagem não "vaze" das bordas arredondadas.
+    <div className="relative bg-white border border-gray-200 rounded-lg shadow overflow-hidden">
+      
+      {/* Lógica para mostrar o selo de Destaque */}
+      {bolo.destaque && (
+        // Recriando o <Badge> do Flowbite com Tailwind:
+        // - Usamos um `span` com posicionamento `absolute`.
+        // - Classes de cor, tamanho de texto, padding e cantos arredondados.
+        <span className="absolute top-2 right-2 bg-pink-100 text-pink-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+          Destaque!
+        </span>
+      )}
+
+      {/* Imagem do Bolo */}
+      <a href="#">
+        <img className="w-full h-56 object-cover" src={bolo.foto} alt={`Foto do ${bolo.nome}`} />
+      </a>
+
+      {/* Conteúdo do Card */}
+      <div className="p-5">
+        <a href="#">
+          <h5 className="text-xl font-semibold tracking-tight text-gray-900">
+            {bolo.nome}
+          </h5>
+        </a>
+        <div className="mb-5 mt-2.5 flex items-center">
+          {/* Tag de Categoria */}
+          <span className="bg-cyan-100 text-cyan-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+            {bolo.categoria.nome}
+          </span>
         </div>
-    )
+        <div className="flex items-center justify-between">
+          <span className="text-3xl font-bold text-gray-900">
+            {bolo.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+          </span>
+          <a
+            href="#"
+            className="rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300"
+          >
+            Ver detalhes
+          </a>
+        </div>
+      </div>
+    </div>
+  );
 }
