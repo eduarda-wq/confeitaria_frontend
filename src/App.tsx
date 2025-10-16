@@ -4,6 +4,7 @@ import { ImageCarousel } from "./components/Carrossel";
 import type { BoloType } from "./utils/BoloType";
 import { useEffect, useState } from "react";
 import { useClienteStore } from "./context/ClienteContext";
+import { Link } from "react-router-dom";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -52,6 +53,24 @@ export default function App() {
       buscaCliente(idCliente);
     }
 
+    async function buscaBolosRecentes() {
+      try {
+        setError(null);
+        setIsLoading(true);
+        
+        const response = await fetch(`${apiUrl}/bolos/recentes`);
+        if (!response.ok) throw new Error('Falha ao buscar as novidades.');
+        const dados = await response.json();
+        setBolos(dados);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    buscaBolosRecentes();
+
   }, [logaCliente]);
 
   let conteudo;
@@ -75,43 +94,40 @@ export default function App() {
   return (
     <>
     
-     <InputPesquisa 
-      setBolos={setBolos}
-      setIsLoading={setIsLoading}
-      setError={setError}
-      initialFetchUrl={`${apiUrl}/bolos/destaques`} // Na home, "limpar" volta para os destaques
-    />
+    <InputPesquisa 
+        setBolos={setBolos}
+        setIsLoading={setIsLoading}
+        setError={setError}
+        initialFetchUrl={`${apiUrl}/bolos/recentes`} // Limpar a busca volta para os recentes
+      />
       <div className="max-w-7xl mx-auto my-8">
         <ImageCarousel />
       </div>
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      
-      {/* Novo cabeçalho da seção */}
-      <div className="text-center mb-10">
-        <h2 className="text-4xl font-extrabold tracking-tight text-primary-darkest md:text-5xl">
-          Nossos Queridinhos
-        </h2>
-        <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-600">
-          Os sabores mais pedidos, feitos com a receita secreta da casa e muito carinho.
-        </p>
-      </div>
-
-      
-      {conteudo}
-
-   
-      {bolos.length > 0 && !isLoading && !error && (
-        <div className="text-center mt-12">
-          <a
-            href="/produtos" 
-            className="inline-block rounded-lg bg-primary px-8 py-3 text-center text-lg font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-4 focus:ring-primary-light transition-transform duration-300 hover:scale-105"
-          >
-            Ver Todos os Produtos
-          </a>
+     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="text-center mb-10">
+          <h2 className="text-4xl font-extrabold tracking-tight text-primary-darkest md:text-5xl">
+            Novidades da Semana
+          </h2>
+          <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-600">
+            Os últimos bolos que saíram do nosso forno, fresquinhos para você.
+          </p>
         </div>
-      )}
 
-    </main>
+        {conteudo}
+
+        {/* --- REINTRODUZINDO O BOTÃO "VER TODOS" --- */}
+        {bolos.length > 0 && !isLoading && !error && (
+          <div className="text-center mt-12">
+            <Link
+              to="/produtos" // O link agora tem um propósito claro
+              className="inline-block rounded-lg bg-primary px-8 py-3 text-center text-lg font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-4 focus:ring-primary-light transition-transform duration-300 hover:scale-105"
+            >
+              Ver Cardápio Completo
+            </Link>
+          </div>
+        )}
+        
+      </main>
     
     </>
   );
