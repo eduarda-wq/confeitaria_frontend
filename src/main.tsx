@@ -53,7 +53,7 @@ const rotas = createBrowserRouter([
       
       // --- A CORREÇÃO ESTÁ AQUI ---
       // Garanta que esta linha existe e está correta.
-      { path: 'meus-pedidos', element: <MeusPedidos /> }, 
+      { path: 'meuspedidos', element: <MeusPedidos /> }, 
       
       { path: 'cadCliente', element: <CadCliente /> },
     ],

@@ -55,55 +55,111 @@ export default function Login() {
         }
     }
 
-    return (
-        <section className="bg-gray-50 dark:bg-gray-900">
-            <p style={{ height: 48 }}></p>
-            <div className="flex flex-col items-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                            Dados de Acesso do Cliente
-                        </h1>
-                        <form className="space-y-4 md:space-y-6" 
-                           onSubmit={handleSubmit(verificaLogin)} >
-                            <div>
-                                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seu e-mail</label>
-                                <input type="email" id="email" 
-                                       className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                                       required 
-                                       {...register("email")} />
-                            </div>
-                            <div>
-                                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Senha de Acesso</label>
-                                <input type="password" id="password" 
-                                       className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                                       required 
-                                       {...register("senha")} />
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-start">
-                                    <div className="flex items-center h-5">
-                                        <input id="remember" 
-                                               aria-describedby="remember" type="checkbox" 
-                                               className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" 
-                                               {...register("manter")} />
-                                    </div>
-                                    <div className="ml-3 text-sm">
-                                        <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Manter Conectado</label>
-                                    </div>
-                                </div>
-                                <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Esqueceu sua senha?</a>
-                            </div>
-                            <button type="submit" className="w-full text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                Entrar
-                            </button>
-                            <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                                Ainda não possui conta? <Link to="/cadCliente" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Cadastre-se</Link>
-                            </p>
-                        </form>
-                    </div>
+     return (
+    // Fundo da Página: Marrom Claro Vibrante (bg-amber-50). Remoção de dark classes.
+    <section className="bg-amber-50">
+      <p style={{ height: 48 }}></p>
+      <div className="flex flex-col items-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        {/* Card do Formulário: Fundo Marrom Claro Acento (bg-amber-100). Remoção de dark classes. */}
+        <div className="w-full bg-amber-100 rounded-lg shadow-xl sm:max-w-md xl:p-0">
+          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+            {/* Título: Marrom Escuro Vibrante (text-amber-900). Remoção de dark classes. */}
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-amber-900 md:text-2xl">
+              Dados de Acesso do Cliente
+            </h1>
+            <form
+              className="space-y-4 md:space-y-6"
+              onSubmit={handleSubmit(verificaLogin)}
+            >
+              {/* --- Campo E-mail --- */}
+              <div>
+                {/* Label: Marrom Escuro (text-amber-900). Remoção de dark classes. */}
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-sm font-medium text-amber-900"
+                >
+                  Seu e-mail
+                </label>
+                {/* Input: Fundo Marrom Claro (bg-amber-50), Borda Caramelo (border-amber-300), Foco Marrom (focus:ring-amber-600). Remoção de dark classes. */}
+                <input
+                  type="email"
+                  id="email"
+                  className="bg-amber-50 border border-amber-300 text-amber-900 rounded-lg focus:ring-amber-600 focus:border-amber-600 block w-full p-2.5 placeholder-stone-500"
+                  required
+                  {...register("email")}
+                />
+              </div>
+
+              {/* --- Campo Senha --- */}
+              <div>
+                {/* Label: Marrom Escuro (text-amber-900). Remoção de dark classes. */}
+                <label
+                  htmlFor="password"
+                  className="block mb-2 text-sm font-medium text-amber-900"
+                >
+                  Senha de Acesso
+                </label>
+                {/* Input: Fundo Marrom Claro, Borda Caramelo, Foco Marrom. Remoção de dark classes. */}
+                <input
+                  type="password"
+                  id="password"
+                  className="bg-amber-50 border border-amber-300 text-amber-900 rounded-lg focus:ring-amber-600 focus:border-amber-600 block w-full p-2.5 placeholder-stone-500"
+                  required
+                  {...register("senha")}
+                />
+              </div>
+
+              {/* --- Manter Conectado e Esqueceu Senha --- */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-start">
+                  <div className="flex items-center h-5">
+                    {/* Checkbox: Borda Caramelo (border-amber-300), Fundo Marrom Claro (bg-amber-50), Foco Marrom (focus:ring-amber-600). Remoção de dark classes. */}
+                    <input
+                      id="remember"
+                      aria-describedby="remember"
+                      type="checkbox"
+                      className="w-4 h-4 border border-amber-300 rounded bg-amber-50 focus:ring-3 focus:ring-amber-600"
+                      {...register("manter")}
+                    />
+                  </div>
+                  <div className="ml-3 text-sm">
+                    {/* Label: Marrom Suave (text-stone-600). Remoção de dark classes. */}
+                    <label htmlFor="remember" className="text-stone-600">
+                      Manter Conectado
+                    </label>
+                  </div>
                 </div>
-            </div>
-        </section>
-    )
+                {/* Link Esqueceu Senha: Marrom Escuro Acento (text-amber-800). Remoção de dark classes. */}
+                <a
+                  href="#"
+                  className="text-sm font-medium text-amber-800 hover:underline"
+                >
+                  Esqueceu sua senha?
+                </a>
+              </div>
+
+              {/* Botão de Ação: Fundo Marrom Escuro (bg-amber-900), Hover mais Escuro (hover:bg-amber-800). Remoção de dark classes. */}
+              <button
+                type="submit"
+                className="w-full text-amber-50 bg-amber-900 hover:bg-amber-800 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-md transition-colors"
+              >
+                Entrar
+              </button>
+
+              {/* Link de Cadastro: Texto Marrom Suave (text-stone-600), Link Marrom Escuro (text-amber-800). Remoção de dark classes. */}
+              <p className="text-sm font-light text-stone-600">
+                Ainda não possui conta?{" "}
+                <Link
+                  to="/cadCliente"
+                  className="font-bold text-amber-800 hover:underline transition-colors"
+                >
+                  Cadastre-se
+                </Link>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

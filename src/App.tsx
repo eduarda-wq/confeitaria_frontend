@@ -91,7 +91,7 @@ export default function App() {
     );
   }
 
-  return (
+ return (
     <>
     
     <InputPesquisa 
@@ -99,16 +99,20 @@ export default function App() {
         setIsLoading={setIsLoading}
         setError={setError}
         initialFetchUrl={`${apiUrl}/bolos/recentes`} // Limpar a busca volta para os recentes
-      />
+    />
       <div className="max-w-7xl mx-auto my-8">
         <ImageCarousel />
       </div>
-     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      
+      {/* Fundo da Seção Principal: Marrom Claro Vibrante (bg-amber-50) */}
+      <main className="bg-amber-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-10">
-          <h2 className="text-4xl font-extrabold tracking-tight text-primary-darkest md:text-5xl">
+          {/* Título: Marrom Escuro Vibrante (text-amber-900) */}
+          <h2 className="text-4xl font-extrabold tracking-tight text-amber-900 md:text-5xl">
             Novidades da Semana
           </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-600">
+          {/* Parágrafo: Marrom Suave (text-stone-700) */}
+          <p className="mt-4 max-w-2xl mx-auto text-lg text-stone-700">
             Os últimos bolos que saíram do nosso forno, fresquinhos para você.
           </p>
         </div>
@@ -120,7 +124,8 @@ export default function App() {
           <div className="text-center mt-12">
             <Link
               to="/produtos" // O link agora tem um propósito claro
-              className="inline-block rounded-lg bg-primary px-8 py-3 text-center text-lg font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-4 focus:ring-primary-light transition-transform duration-300 hover:scale-105"
+              // Botão: Fundo Marrom Escuro (bg-amber-900), Hover e Focus em tons de Marrom
+              className="inline-block rounded-lg bg-amber-900 px-8 py-3 text-center text-lg font-medium text-amber-50 hover:bg-amber-800 focus:outline-none focus:ring-4 focus:ring-amber-300 transition-transform duration-300 hover:scale-105 shadow-lg"
             >
               Ver Cardápio Completo
             </Link>
@@ -128,7 +133,7 @@ export default function App() {
         )}
         
       </main>
-    
+      
     </>
   );
 }

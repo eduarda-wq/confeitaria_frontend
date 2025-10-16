@@ -61,7 +61,7 @@ export default function Detalhes() {
       loading: 'Processando seu pedido...',
       success: (response) => {
         if (!response.ok) throw new Error('Falha ao registrar o pedido.');
-        navigate('/meus-pedidos'); 
+        navigate('/meuspedidos'); 
         return 'Pedido realizado com sucesso! Você está sendo redirecionado.';
       },
       error: 'Ops... Não foi possível realizar o pedido.',
@@ -82,9 +82,10 @@ export default function Detalhes() {
   }
 
   // Se tudo correu bem, mostra os detalhes do bolo
-  return (
+return (
     <main className="max-w-5xl mx-auto mt-8 px-4">
-      <section className="flex flex-col md:flex-row bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden">
+      {/* Card Principal: Fundo Marrom Claro Acento (bg-amber-100), Borda Caramelo Suave (border-amber-200) */}
+      <section className="flex flex-col md:flex-row bg-amber-100 border border-amber-200 rounded-lg shadow-xl overflow-hidden">
         <img
           className="object-cover w-full md:w-1/2 h-80 md:h-auto"
           src={bolo.foto}
@@ -92,19 +93,24 @@ export default function Detalhes() {
         />
         <div className="flex flex-col justify-between p-6 leading-normal w-full">
           <div>
-            <span className="bg-primary-lightest text-primary-darkest text-sm font-semibold px-2.5 py-0.5 rounded mb-2 inline-block">
+            {/* Tag Categoria: Fundo Caramelo Claro (bg-amber-200), Texto Marrom Escuro (text-amber-900) */}
+            <span className="bg-amber-200 text-amber-900 text-sm font-semibold px-2.5 py-0.5 rounded mb-2 inline-block">
               {bolo.categoria.nome}
             </span>
-            <h1 className="mb-2 text-4xl font-bold tracking-tight text-gray-900">
+            {/* Título: Marrom Escuro Vibrante (text-amber-900) */}
+            <h1 className="mb-2 text-4xl font-bold tracking-tight text-amber-900">
               {bolo.nome}
             </h1>
-            <p className="mb-4 text-gray-700">
+            {/* Descrição: Marrom Suave (text-stone-700) */}
+            <p className="mb-4 text-stone-700">
               {bolo.descricao}
             </p>
-            <p className="mb-4 text-lg text-gray-600">
+            {/* Peso: Marrom Suave (text-stone-600) */}
+            <p className="mb-4 text-lg text-stone-600">
               Peso: <span className="font-semibold">{bolo.peso}g</span>
             </p>
-            <p className="mb-6 text-5xl font-extrabold text-primary-darkest">
+            {/* Preço: Marrom Escuro Vibrante (text-amber-900) */}
+            <p className="mb-6 text-5xl font-extrabold text-amber-900">
               {Number(bolo.preco).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
             </p>
           </div>
@@ -112,16 +118,19 @@ export default function Detalhes() {
           {cliente.id ? (
             <button
               onClick={handleFazerPedido}
-              className="text-black bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-light font-medium rounded-lg text-lg w-full px-5 py-3 text-center transition-colors duration-300"
+              // Botão: Fundo Marrom Escuro (bg-amber-900), Texto Marrom Claro (text-amber-50), Hover e Focus em tons de Marrom
+              className="text-amber-50 bg-amber-900 hover:bg-amber-800 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-lg w-full px-5 py-3 text-center transition-colors duration-300 shadow-lg"
             >
               Fazer Pedido Agora
             </button>
           ) : (
-            <div className="bg-primary-lightest p-4 rounded-lg text-center">
-              <h2 className="mb-2 text-xl font-bold text-primary-darkest">
+            // Box de Login: Fundo Caramelo Claro (bg-amber-200), Texto Marrom Escuro (text-amber-900)
+            <div className="bg-amber-200 p-4 rounded-lg text-center">
+              <h2 className="mb-2 text-xl font-bold text-amber-900">
                 😍 Gostou deste bolo?
               </h2>
-              <Link to="/login" className="font-bold text-primary hover:underline">
+              {/* Link Login: Marrom Escuro Acento (text-amber-800) */}
+              <Link to="/login" className="font-bold text-amber-800 hover:underline transition-colors">
                 Faça Login para Pedir
               </Link>
             </div>
@@ -129,5 +138,5 @@ export default function Detalhes() {
         </div>
       </section>
     </main>
-  );
+);
 }

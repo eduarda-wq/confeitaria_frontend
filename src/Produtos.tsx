@@ -50,25 +50,29 @@ export default function Produtos() {
     );
   }
 
-  return (
+return (
     <>
       <InputPesquisa 
-      setBolos={setBolos}
-      setIsLoading={setIsLoading}
-      setError={setError}
-      initialFetchUrl={`${apiUrl}/bolos`} // Na página de produtos, "limpar" volta para TODOS os bolos
-    />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          setBolos={setBolos}
+          setIsLoading={setIsLoading}
+          setError={setError}
+          initialFetchUrl={`${apiUrl}/bolos`} // Na página de produtos, "limpar" volta para TODOS os bolos
+      />
+      
+      {/* Fundo da Seção Principal: Marrom Claro Vibrante (bg-amber-50) */}
+      <main className="bg-amber-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-10">
-          <h1 className="text-4xl font-extrabold tracking-tight text-primary-darkest md:text-5xl">
+          {/* Título: Marrom Escuro Vibrante (text-amber-900) */}
+          <h1 className="text-4xl font-extrabold tracking-tight text-amber-900 md:text-5xl">
             Nosso Cardápio
           </h1>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-600">
+          {/* Parágrafo: Marrom Suave (text-stone-700) */}
+          <p className="mt-4 max-w-2xl mx-auto text-lg text-stone-700">
             Explore todos os nossos sabores e encontre o bolo perfeito para você.
           </p>
         </div>
         {conteudo}
       </main>
     </>
-  );
+);
 }

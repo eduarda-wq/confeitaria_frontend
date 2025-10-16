@@ -63,14 +63,15 @@ export function InputPesquisa({ setBolos, setIsLoading, setError, initialFetchUr
     <div className="flex justify-center items-center my-6">
       <form className="relative w-full max-w-2xl" onSubmit={handleSubmit(enviaPesquisa)}>
         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-          {/* Ícone de Lupa */}
-          <svg className="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+          {/* Ícone de Lupa: Marrom Acento (text-amber-600) */}
+          <svg className="w-4 h-4 text-amber-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
           </svg>
         </div>
         <input
           type="search"
-          className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-primary focus:border-primary"
+          // Input: Fundo Marrom Claro (bg-amber-50), Borda Caramelo (border-amber-300), Foco Marrom Escuro (focus:ring-amber-800)
+          className="block w-full p-4 ps-10 text-sm text-amber-900 border border-amber-300 rounded-lg bg-amber-50 focus:ring-amber-800 focus:border-amber-800 placeholder-stone-500"
           placeholder="Busque por nome, categoria ou ingrediente..."
           required
           {...register('termo')}
@@ -81,7 +82,8 @@ export function InputPesquisa({ setBolos, setIsLoading, setError, initialFetchUr
           <button
             type="button"
             onClick={resetarBusca}
-            className="text-gray-500 absolute end-24 bottom-2.5 hover:text-primary-dark font-bold rounded-lg text-xl px-4 py-2"
+            // Botão Limpar: Marrom Acento (text-amber-600), Hover Marrom Escuro (hover:text-amber-900)
+            className="text-amber-600 absolute end-24 bottom-2.5 hover:text-amber-900 font-bold rounded-lg text-xl px-4 py-2"
             aria-label="Limpar pesquisa"
           >
             &times;
@@ -90,11 +92,12 @@ export function InputPesquisa({ setBolos, setIsLoading, setError, initialFetchUr
 
         <button
           type="submit"
-          className="text-white absolute end-2.5 bottom-2.5 bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-light font-medium rounded-lg text-sm px-4 py-2"
+          // Botão Pesquisar: Fundo Marrom Escuro (bg-amber-900), Texto Marrom Claro (text-amber-50), Foco Caramelo Suave (focus:ring-amber-300)
+          className="text-amber-50 absolute end-2.5 bottom-2.5 bg-amber-900 hover:bg-amber-800 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-4 py-2 shadow-md transition-colors"
         >
           Pesquisar
         </button>
       </form>
     </div>
-  );
+);
 }

@@ -44,49 +44,143 @@ export default function CadCliente() {
         }
     }
 
-    return (
-        <section className="bg-gray-50 dark:bg-gray-900">
-            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                            Cadastro de Cliente
-                        </h1>
-                        <form className="space-y-4 md:space-y-6" 
-                          onSubmit={handleSubmit(cadastraCliente)}>
-                            <div>
-                                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome:</label>
-                                <input type="text" id="nome" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Seu nome completo" required 
-                                    {...register("nome")} />
-                            </div>
-                            <div>
-                                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">E-mail:</label>
-                                <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="nome@gmail.com" required 
-                                    {...register("email")} />
-                            </div>
-                            <div>
-                                <label htmlFor="cidade" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cidade:</label>
-                                <input type="text" id="cidade" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Sua cidade" required 
-                                    {...register("cidade")} />
-                            </div>
-                            <div>
-                                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Senha de Acesso:</label>
-                                <input type="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required 
-                                      {...register("senha")} />
-                            </div>
-                            <div>
-                                <label htmlFor="confirm-password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirme a Senha:</label>
-                                <input type="password" id="confirm-password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required 
-                                      {...register("senha2")} />
-                            </div>
-                            <button type="submit" className="w-full text-white bg-amber-600 hover:bg-amber-700 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-amber-400 dark:hover:bg-amber-500 dark:focus:ring-amber-800">Criar sua Conta</button>
-                            <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                                Já possui uma conta? <Link to="/login" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Faça Login</Link>
-                            </p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    )
+return (
+    // Fundo da Página: Marrom Claro Vibrante (bg-amber-50). Remoção de dark:bg-gray-900.
+    <section className="bg-amber-50">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        {/* Card do Formulário: Fundo Marrom Claro Acento (bg-amber-100). Remoção de dark classes. */}
+        <div className="w-full bg-amber-100 rounded-lg shadow-xl sm:max-w-md xl:p-0">
+          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+            {/* Título: Marrom Escuro Vibrante (text-amber-900). Remoção de dark:text-white. */}
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-amber-900 md:text-2xl">
+              Cadastro de Cliente
+            </h1>
+            <form
+              className="space-y-4 md:space-y-6"
+              onSubmit={handleSubmit(cadastraCliente)}
+            >
+              {/* --- Campo Nome --- */}
+              <div>
+                {/* Label: Marrom Escuro (text-amber-900). Remoção de dark:text-white. */}
+                <label
+                  htmlFor="nome"
+                  className="block mb-2 text-sm font-medium text-amber-900"
+                >
+                  Nome:
+                </label>
+                {/* Input: Fundo Marrom Claro (bg-amber-50), Borda Caramelo (border-amber-300), Foco Marrom (focus:ring-amber-600). Remoção de dark classes. */}
+                <input
+                  type="text"
+                  id="nome"
+                  className="bg-amber-50 border border-amber-300 text-amber-900 text-sm rounded-lg focus:ring-amber-600 focus:border-amber-600 block w-full p-2.5 placeholder-stone-500"
+                  placeholder="Seu nome completo"
+                  required
+                  {...register("nome")}
+                />
+              </div>
+
+              {/* --- Campo E-mail --- */}
+              <div>
+                {/* Label: Marrom Escuro (text-amber-900). Remoção de dark:text-white. */}
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-sm font-medium text-amber-900"
+                >
+                  E-mail:
+                </label>
+                {/* Input: Fundo Marrom Claro, Borda Caramelo, Foco Marrom. Remoção de dark classes. */}
+                <input
+                  type="email"
+                  id="email"
+                  className="bg-amber-50 border border-amber-300 text-amber-900 text-sm rounded-lg focus:ring-amber-600 focus:border-amber-600 block w-full p-2.5 placeholder-stone-500"
+                  placeholder="nome@gmail.com"
+                  required
+                  {...register("email")}
+                />
+              </div>
+
+              {/* --- Campo Cidade --- */}
+              <div>
+                {/* Label: Marrom Escuro (text-amber-900). Remoção de dark:text-white. */}
+                <label
+                  htmlFor="cidade"
+                  className="block mb-2 text-sm font-medium text-amber-900"
+                >
+                  Cidade:
+                </label>
+                {/* Input: Fundo Marrom Claro, Borda Caramelo, Foco Marrom. Remoção de dark classes. */}
+                <input
+                  type="text"
+                  id="cidade"
+                  className="bg-amber-50 border border-amber-300 text-amber-900 text-sm rounded-lg focus:ring-amber-600 focus:border-amber-600 block w-full p-2.5 placeholder-stone-500"
+                  placeholder="Sua cidade"
+                  required
+                  {...register("cidade")}
+                />
+              </div>
+
+              {/* --- Campo Senha de Acesso --- */}
+              <div>
+                {/* Label: Marrom Escuro (text-amber-900). Remoção de dark:text-white. */}
+                <label
+                  htmlFor="password"
+                  className="block mb-2 text-sm font-medium text-amber-900"
+                >
+                  Senha de Acesso:
+                </label>
+                {/* Input: Fundo Marrom Claro, Borda Caramelo, Foco Marrom. Remoção de dark classes. */}
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="••••••••"
+                  className="bg-amber-50 border border-amber-300 text-amber-900 text-sm rounded-lg focus:ring-amber-600 focus:border-amber-600 block w-full p-2.5 placeholder-stone-500"
+                  required
+                  {...register("senha")}
+                />
+              </div>
+
+              {/* --- Campo Confirme a Senha --- */}
+              <div>
+                {/* Label: Marrom Escuro (text-amber-900). Remoção de dark:text-white. */}
+                <label
+                  htmlFor="confirm-password"
+                  className="block mb-2 text-sm font-medium text-amber-900"
+                >
+                  Confirme a Senha:
+                </label>
+                {/* Input: Fundo Marrom Claro, Borda Caramelo, Foco Marrom. Remoção de dark classes. */}
+                <input
+                  type="password"
+                  id="confirm-password"
+                  placeholder="••••••••"
+                  className="bg-amber-50 border border-amber-300 text-amber-900 text-sm rounded-lg focus:ring-amber-600 focus:border-amber-600 block w-full p-2.5 placeholder-stone-500"
+                  required
+                  {...register("senha2")}
+                />
+              </div>
+
+              {/* Botão de Ação: Fundo Marrom Escuro (bg-amber-900), Hover mais Escuro (hover:bg-amber-800). O texto é Marrom Claro (text-amber-50). Remoção de dark classes. */}
+              <button
+                type="submit"
+                className="w-full text-amber-50 bg-amber-900 hover:bg-amber-800 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-md transition-colors"
+              >
+                Criar sua Conta
+              </button>
+
+              {/* Link de Login: Texto Marrom Suave (text-stone-600), Link Marrom Escuro (text-amber-800). Remoção de dark classes. */}
+              <p className="text-sm font-light text-stone-600">
+                Já possui uma conta?{" "}
+                <Link
+                  to="/login"
+                  className="font-bold text-amber-800 hover:underline transition-colors"
+                >
+                  Faça Login
+                </Link>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
