@@ -2,7 +2,6 @@ import { TiDeleteOutline } from "react-icons/ti"
 import { FaRegStar } from "react-icons/fa"
 import type { BoloType } from "../../utils/BoloType"
 import { useAdminStore } from "../context/AdminContext"
-import { Border } from "victory"
 
 type listaBoloProps = {
   bolo: BoloType;

@@ -1,6 +1,3 @@
-// File: confeitaria_frontend/src/admin/components/ItemPedido.tsx
-
-import { FaRegEdit  } from "react-icons/fa"
 import type { PedidoType } from "../../utils/PedidoType"
 import { useAdminStore } from "../context/AdminContext"
 
