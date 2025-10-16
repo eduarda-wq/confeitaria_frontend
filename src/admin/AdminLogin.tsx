@@ -52,7 +52,7 @@ export default function AdminLogin() {
         {/* Lado Esquerdo: Imagem e Título */}
         <div className="text-center w-full md:w-auto">
           {/* A imagem do fusca é grande, vamos reduzir um pouco para caber ao lado do formulário */}
-          <img src="../../logo (2).png" alt="Logo Confeitaria" style={{ width: 180 }}
+          <img src="../../bolologo.png" alt="Logo Confeitaria" style={{ width: 180 }}
             className="d-block mx-auto" />
 
           {/* Título: Texto agora em tom de chocolate (amber-900) */}
