@@ -60,10 +60,6 @@ export default function ItemPedido({ pedido, pedidos, setPedidos }: listaPedidoP
         {pedido.cliente.nome}
       </td>
       <td className="px-6 py-4">
-        <p><b>Qtd:</b> {pedido.quantidade}</p>
-        <p><b>Obs:</b> {pedido.observacao || "Nenhuma"}</p>
-      </td>
-      <td className="px-6 py-4">
         {dataFormatada}
       </td>
       <td className="px-6 py-4">
