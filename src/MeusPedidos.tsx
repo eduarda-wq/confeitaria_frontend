@@ -1,4 +1,3 @@
-import './MinhasPropostas.css'
 import { useEffect, useState } from "react";
 import { useClienteStore } from "./context/ClienteContext";
 import type { PedidoType } from "./utils/PedidoType";

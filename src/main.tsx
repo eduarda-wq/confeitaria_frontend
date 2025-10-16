@@ -2,11 +2,13 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 
-import App from './App.tsx'
-import Login from './Login.tsx'
-import Detalhes from './Detalhes.tsx'
-import MeusPedidos from './MeusPedidos.tsx'
-import CadCliente from './CadCliente.tsx'
+import App from './App.tsx';
+import Login from './Login.tsx';
+import Detalhes from './Detalhes.tsx';
+import MeusPedidos from './MeusPedidos.tsx'; // Garanta que esta importação existe!
+import CadCliente from './CadCliente.tsx';
+import Produtos from './Produtos.tsx'; // A página de todos os produtos
+import Layout from './Layout.tsx';
 
 // ----------------- Rotas de Admin
 import AdminLayout from './admin/AdminLayout.tsx';
@@ -17,7 +19,6 @@ import AdminNovoBolo from './admin/AdminNovoBolo.tsx';
 import AdminPedidos from './admin/AdminPedidos.tsx';          
 import AdminCadAdmin from './admin/AdminCadAdmin.tsx';          
 
-import Layout from './Layout.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const rotas = createBrowserRouter([
@@ -36,18 +37,22 @@ const rotas = createBrowserRouter([
       { path: "cadAdmin", element: <AdminCadAdmin /> },
     ],
   },
-  {
+   {
     path: '/',
     element: <Layout />,
     children: [
       { index: true, element: <App /> },
       { path: 'login', element: <Login /> },
+      { path: 'produtos', element: <Produtos /> },
       { path: 'detalhes/:boloId', element: <Detalhes /> },
-      { path: 'meusPedidos', element: <MeusPedidos /> },
+      
+    
+      { path: 'meus-pedidos', element: <MeusPedidos /> }, 
+      
       { path: 'cadCliente', element: <CadCliente /> },
     ],
   },
-])
+]);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
