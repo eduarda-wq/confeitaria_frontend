@@ -1,3 +1,5 @@
+// File: confeitaria_frontend/src/admin/AdminLogin.tsx
+
 import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { Toaster, toast } from 'sonner'
@@ -39,28 +41,62 @@ export default function AdminLogin() {
   }
 
   return (
-    <main className="max-w-screen-xl flex flex-col items-center mx-auto p-6">
-      <img src="../../fusca.png" alt="Revenda" style={{ width: 240 }}
-        className="d-block" />
-      <div className="max-w-sm">
-        <h1 className="text-3xl font-bold my-8">Admin: Revenda Herbie</h1>
-        <form className="max-w-sm mx-auto"
-          onSubmit={handleSubmit(verificaLogin)} >
-          <div className="mb-5">
-            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">E-mail:</label>
-            <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              {...register("email")}
-              required />
+    // Fundo da página em marrom clarinho vibrante (creme/bege saturado)
+    <main className="flex flex-col items-center p-6 bg-yellow-50 dark:bg-stone-900 min-h-screen">
+      
+      {/* Container Flex para o Logo, Título e Formulário */}
+      {/* mx-auto e max-w-4xl limitam a largura e centralizam o bloco */}
+      {/* flex-col md:flex-row para a imagem ir para o lado em telas maiores */}
+      <div className="max-w-4xl w-full flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12 mt-16 mx-auto">
+        
+        {/* Lado Esquerdo: Imagem e Título */}
+        <div className="text-center w-full md:w-auto">
+          {/* A imagem do fusca é grande, vamos reduzir um pouco para caber ao lado do formulário */}
+          <img src="../../logo (2).png" alt="Logo Confeitaria" style={{ width: 180 }}
+            className="d-block mx-auto" />
+
+          {/* Título: Texto agora em tom de chocolate (amber-900) */}
+          <div className="my-4 text-amber-900 dark:text-stone-100">
+              <h2 className="text-xl font-bold">Admin</h2>
+              <h1 className="text-4xl font-serif">Confeitaria Doce Sabor</h1>
           </div>
-          <div className="mb-5">
-            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Senha:</label>
-            <input type="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              {...register("senha")}
-              required />
-          </div>
-          <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Entrar</button>
-        </form>
+        </div>
+
+        {/* Lado Direito: Formulário de Login */}
+        <div className="w-full max-w-sm">
+          {/* Formulário com fundo branco/marrom escuro e sombra */}
+          <form className="mx-auto p-8 bg-white dark:bg-stone-800 rounded-lg shadow-xl"
+            onSubmit={handleSubmit(verificaLogin)} >
+            
+            <div className="mb-5">
+              {/* Rótulo em tom de chocolate */}
+              <label htmlFor="email" className="block mb-2 text-sm font-medium text-amber-900 dark:text-stone-100">E-mail:</label>
+              <input type="email" id="email" 
+                // Inputs com fundo mais vibrante (creme), foco e borda em caramelo (amber-600)
+                className="bg-amber-50 border border-amber-300 text-amber-900 text-sm rounded-lg focus:ring-amber-600 focus:border-amber-600 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-amber-600 dark:focus:border-amber-600"
+                {...register("email")}
+                required />
+            </div>
+            
+            <div className="mb-5">
+              {/* Rótulo em tom de chocolate */}
+              <label htmlFor="password" className="block mb-2 text-sm font-medium text-amber-900 dark:text-stone-100">Senha:</label>
+              <input type="password" id="password" 
+                // Inputs com fundo mais vibrante (creme), foco e borda em caramelo (amber-600)
+                className="bg-amber-50 border border-amber-300 text-amber-900 text-sm rounded-lg focus:ring-amber-600 focus:border-amber-600 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-amber-600 dark:focus:border-amber-600"
+                {...register("senha")}
+                required />
+            </div>
+            
+            {/* Botão modificado: largura total (w-full) e cor chocolate vibrante (amber-800) */}
+            <button type="submit" 
+              className="text-white bg-amber-800 hover:bg-amber-900 focus:ring-4 focus:outline-none focus:ring-amber-400 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-amber-700 dark:hover:bg-amber-800 dark:focus:ring-amber-500">
+              Entrar
+            </button>
+          </form>
+        </div>
       </div>
+
       <Toaster richColors position="top-right" />
     </main>
   );

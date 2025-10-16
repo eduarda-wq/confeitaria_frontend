@@ -16,7 +16,7 @@ export default function ItemAdmin({ adminLinha, admins, setAdmins }: listaCarroP
   const { admin } = useAdminStore()
 
   async function excluirAdmin() {
-    if (!admin || admin.nivel == 1) {
+    if (!admin || admin.nivel == 5) {
       alert("Você não tem permissão para excluir admins");
       return;
     }
