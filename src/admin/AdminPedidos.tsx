@@ -53,9 +53,6 @@ function AdminPedidos() {
                 Cliente
               </th>
               <th scope="col" className="px-6 py-3">
-                Detalhes do Pedido
-              </th>
-              <th scope="col" className="px-6 py-3">
                 Data Entrega
               </th>
               <th scope="col" className="px-6 py-3">
