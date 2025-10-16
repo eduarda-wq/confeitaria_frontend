@@ -2,59 +2,99 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import type { BoloType } from "../utils/BoloType";
 
-const apiUrl = import.meta.env.VITE_API_URL
+const apiUrl = import.meta.env.VITE_API_URL;
 
 type Inputs = {
-    termo: string
-}
+  termo: string;
+};
 
+// 1. As props foram atualizadas para receber mais controles da página "pai"
 type InputPesquisaProps = {
-    setBolos: React.Dispatch<React.SetStateAction<BoloType[]>>
-}
+  setBolos: React.Dispatch<React.SetStateAction<BoloType[]>>;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setError: React.Dispatch<React.SetStateAction<string | null>>;
+  initialFetchUrl: string; // URL para buscar os dados originais (destaques ou todos)
+};
 
-export function InputPesquisa({ setBolos }: InputPesquisaProps) {
-    const { register, handleSubmit, reset } = useForm<Inputs>()
+export function InputPesquisa({ setBolos, setIsLoading, setError, initialFetchUrl }: InputPesquisaProps) {
+  // 2. Adicionamos o 'watch' para observar o valor do campo de pesquisa em tempo real
+  const { register, handleSubmit, reset, watch } = useForm<Inputs>();
+  const termoPesquisado = watch("termo"); // Esta variável terá o valor atual do input
 
-    async function enviaPesquisa(data: Inputs) {
-        if (data.termo.length < 2) {
-            toast.error("Informe, no mínimo, 2 caracteres")
-            return
-        }
-
-        const response = await fetch(`${apiUrl}/bolos/pesquisa/${data.termo}`)
-        const dados = await response.json()
-        setBolos(dados)
+  async function enviaPesquisa(data: Inputs) {
+    if (data.termo.length < 2) {
+      toast.error("Informe, no mínimo, 2 caracteres");
+      return;
     }
 
-    async function mostraDestaques() {
-        const response = await fetch(`${apiUrl}/bolos/destaques`)
-        const dados = await response.json()
-        reset({ termo: "" })
-        setBolos(dados)
+    // 3. A lógica de busca agora controla o estado de loading e erro
+    try {
+      setError(null);
+      setIsLoading(true);
+      const response = await fetch(`${apiUrl}/bolos/pesquisa/${data.termo}`);
+      if (!response.ok) throw new Error("Falha na busca.");
+      const dados = await response.json();
+      setBolos(dados);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
     }
+  }
 
-    return (
-        <div className="flex mx-auto max-w-5xl mt-3">
-            <form className="flex-1" onSubmit={handleSubmit(enviaPesquisa)}>
-                <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Pesquisar</label>
-                <div className="relative">
-                    <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                        </svg>
-                    </div>
-                    <input type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-pink-500 focus:border-pink-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500"
-                        placeholder="Informe o nome, categoria ou descrição do bolo" required 
-                        {...register('termo')} />
-                    <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-pink-700 hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800">
-                        Pesquisar
-                    </button>
-                </div>
-            </form>
-            <button type="button" className="ms-3 mt-2 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-                    onClick={mostraDestaques}>
-                Exibir Destaques
-            </button>
+  // 4. A antiga função 'mostraDestaques' agora é 'resetarBusca', mais genérica
+  async function resetarBusca() {
+    try {
+      setError(null);
+      setIsLoading(true);
+      const response = await fetch(initialFetchUrl); // Usa a URL inicial passada como prop
+      if (!response.ok) throw new Error("Falha ao recarregar os bolos.");
+      const dados = await response.json();
+      setBolos(dados);
+      reset({ termo: "" }); // Limpa o campo de texto do formulário
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  return (
+    <div className="flex justify-center items-center my-6">
+      <form className="relative w-full max-w-2xl" onSubmit={handleSubmit(enviaPesquisa)}>
+        <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+          {/* Ícone de Lupa */}
+          <svg className="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+          </svg>
         </div>
-    )
+        <input
+          type="search"
+          className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-primary focus:border-primary"
+          placeholder="Busque por nome, categoria ou ingrediente..."
+          required
+          {...register('termo')}
+        />
+        
+        {/* 5. Botão "Limpar" (X) que só aparece se houver texto */}
+        {termoPesquisado && (
+          <button
+            type="button"
+            onClick={resetarBusca}
+            className="text-gray-500 absolute end-24 bottom-2.5 hover:text-primary-dark font-bold rounded-lg text-xl px-4 py-2"
+            aria-label="Limpar pesquisa"
+          >
+            &times;
+          </button>
+        )}
+
+        <button
+          type="submit"
+          className="text-white absolute end-2.5 bottom-2.5 bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-light font-medium rounded-lg text-sm px-4 py-2"
+        >
+          Pesquisar
+        </button>
+      </form>
+    </div>
+  );
 }

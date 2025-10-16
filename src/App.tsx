@@ -75,7 +75,12 @@ export default function App() {
   return (
     <>
     
-      <InputPesquisa setBolos={setBolos} />
+     <InputPesquisa 
+      setBolos={setBolos}
+      setIsLoading={setIsLoading}
+      setError={setError}
+      initialFetchUrl={`${apiUrl}/bolos/destaques`} // Na home, "limpar" volta para os destaques
+    />
       <div className="max-w-7xl mx-auto my-8">
         <ImageCarousel />
       </div>

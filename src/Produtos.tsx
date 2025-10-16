@@ -52,7 +52,12 @@ export default function Produtos() {
 
   return (
     <>
-      <InputPesquisa setBolos={setBolos} />
+      <InputPesquisa 
+      setBolos={setBolos}
+      setIsLoading={setIsLoading}
+      setError={setError}
+      initialFetchUrl={`${apiUrl}/bolos`} // Na página de produtos, "limpar" volta para TODOS os bolos
+    />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-10">
           <h1 className="text-4xl font-extrabold tracking-tight text-primary-darkest md:text-5xl">
