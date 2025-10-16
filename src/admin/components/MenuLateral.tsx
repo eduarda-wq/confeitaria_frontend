@@ -4,7 +4,7 @@ import { useAdminStore } from "../context/AdminContext";
 import { IoExitOutline } from "react-icons/io5";
 import { BiSolidDashboard } from "react-icons/bi";
 // ADICIONADO: FaTags para o ícone de categorias
-import { FaCakeCandles, FaTags, FaUsers } from "react-icons/fa6"; 
+import { FaCakeCandles, FaTags } from "react-icons/fa6"; 
 import { BsClipboardCheck } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
