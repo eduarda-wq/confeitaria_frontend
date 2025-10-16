@@ -13,7 +13,7 @@ export function Titulo() {
       <div className="flex flex-wrap justify-between max-w-screen-xl p-4">
         <Link to="/admin" className="flex items-center space-x-3 rtl:space-x-reverse">
           {/* A imagem do fusca ainda está aqui, talvez você queira trocá-la por um logo de bolo! */}
-          <img src="./bolologo.png" className="h-16" alt="Logo" />
+          <img src="../../bolologo.png" className="h-16" alt="Logo" />
           {/* Texto em branco para contraste */}
           <span className="self-center text-3xl font-serif whitespace-nowrap text-white dark:text-white">
             Confeitaria Doce Sabor: Admin
