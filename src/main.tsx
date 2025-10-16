@@ -16,9 +16,11 @@ import AdminBolos from './admin/AdminBolos.tsx';
 import AdminNovoBolo from './admin/AdminNovoBolo.tsx';          
 import AdminPedidos from './admin/AdminPedidos.tsx';          
 import AdminCadAdmin from './admin/AdminCadAdmin.tsx';          
+import AdminNovoAdmin from './admin/AdminNovoAdmin.tsx';
 
 import Layout from './Layout.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import AdminCategorias from './admin/AdminCategorias.tsx'
 
 const rotas = createBrowserRouter([
   {
@@ -30,10 +32,12 @@ const rotas = createBrowserRouter([
     element: <AdminLayout />,
     children: [
       { index: true, element: <AdminDashboard /> },
+      { path: "categorias", element: <AdminCategorias /> },
       { path: "bolos", element: <AdminBolos /> },
       { path: "bolos/novo", element: <AdminNovoBolo /> },
       { path: "pedidos", element: <AdminPedidos /> },
       { path: "cadAdmin", element: <AdminCadAdmin /> },
+      { path: "cadAdmin/novo", element: <AdminNovoAdmin /> }
     ],
   },
   {

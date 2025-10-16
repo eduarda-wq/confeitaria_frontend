@@ -1,3 +1,5 @@
+// File: confeitaria_frontend/src/admin/AdminCadAdmin.tsx
+
 import { useEffect, useState } from "react"
 
 import ItemAdmin from "./components/ItemAdmin"
@@ -25,18 +27,21 @@ export default function AdminCadAdmin() {
   return (
     <div className='m-4 mt-24'>
       <div className='flex justify-between'>
-        <h1 className="mb-4 text-2xl font-bold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">
+        {/* Título com cor de texto em tom de chocolate */}
+        <h1 className="mb-4 text-2xl font-bold leading-none tracking-tight text-amber-900 md:text-3xl lg:text-4xl dark:text-white">
           Cadastro de Administradores do Sistema
         </h1>
-        <Link to="/admin/carros/novo" 
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-md px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+        {/* Botão de Novo Admin com cor de chocolate vibrante (amber-800) */}
+        <Link to="/admin/cadAdmin/novo" 
+          className="text-white bg-amber-800 hover:bg-amber-900 focus:ring-4 focus:ring-amber-300 font-bold rounded-lg text-md px-5 py-2.5 me-2 mb-2 dark:bg-amber-700 dark:hover:bg-amber-800 focus:outline-none dark:focus:ring-amber-800">
           Novo Admin
         </Link>
       </div>
 
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          {/* Cabeçalho da tabela com fundo em tom de creme/bege vibrante */}
+          <thead className="text-xs text-amber-900 uppercase bg-amber-200 dark:bg-stone-700 dark:text-stone-300">
             <tr>
               <th scope="col" className="px-6 py-3">
                 Nome do Admin

@@ -2,6 +2,7 @@ import { TiDeleteOutline } from "react-icons/ti"
 import { FaRegStar } from "react-icons/fa"
 import type { BoloType } from "../../utils/BoloType"
 import { useAdminStore } from "../context/AdminContext"
+import { Border } from "victory"
 
 type listaBoloProps = {
   bolo: BoloType;
@@ -15,7 +16,7 @@ export default function ItemBolo({ bolo, bolos, setBolos }: listaBoloProps) {
   const { admin } = useAdminStore()
 
   async function excluirBolo() {
-    if (!admin || admin.nivel < 2) {
+    if (!admin || admin.nivel < 5) {
       alert("Você não tem permissão para excluir bolos");
       return;
     }
@@ -53,23 +54,30 @@ export default function ItemBolo({ bolo, bolos, setBolos }: listaBoloProps) {
   }
 
   return (
-    <tr key={bolo.id} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+    // Estilo das linhas: Fundo ímpar branco, Fundo par bege vibrante (amber-50)
+    <tr key={bolo.id} className="odd:bg-white odd:dark:bg-stone-900 even:bg-amber-50 even:dark:bg-stone-800 border-b dark:border-stone-700">
       <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-        <img src={bolo.foto} alt={`Foto do ${bolo.nome}`} style={{ width: 200 }} />
+        {/* ALTERAÇÃO: Adicionada a classe rounded para arredondar a borda */}
+        <img src={bolo.foto} alt={`Foto do ${bolo.nome}`} className="rounded" style={{ width: 50 }} />
       </th>
-      <td className={`px-6 py-4 ${bolo.destaque ? "font-extrabold" : ""}`}>
+      {/* Texto em tom de chocolate */}
+      <td className={`px-6 py-4 text-amber-900 ${bolo.destaque ? "font-extrabold" : ""}`}>
         {bolo.nome}
       </td>
-      <td className={`px-6 py-4 ${bolo.destaque ? "font-extrabold" : ""}`}>
+      {/* Texto em tom de chocolate */}
+      <td className={`px-6 py-4 text-amber-900 ${bolo.destaque ? "font-extrabold" : ""}`}>
         {bolo.categoria.nome}
       </td>
-      <td className={`px-6 py-4 ${bolo.destaque ? "font-extrabold" : ""}`}>
+      {/* Texto em tom de chocolate */}
+      <td className={`px-6 py-4 text-amber-900 ${bolo.destaque ? "font-extrabold" : ""}`}>
         {Number(bolo.preco).toLocaleString("pt-br", { minimumFractionDigits: 2 })}
       </td>
       <td className="px-6 py-4">
+        {/* Ícone de Excluir (Mantido em vermelho para alerta) */}
         <TiDeleteOutline className="text-3xl text-red-600 inline-block cursor-pointer" title="Excluir"
           onClick={excluirBolo} />&nbsp;
-        <FaRegStar className="text-3xl text-yellow-600 inline-block cursor-pointer" title="Destacar"
+        {/* Ícone de Destaque (Alterado para caramelo vibrante) */}
+        <FaRegStar className={`text-3xl inline-block cursor-pointer ${bolo.destaque ? 'text-amber-600' : 'text-amber-400'}`} title="Destacar"
           onClick={alterarDestaque} />
       </td>
     </tr>
