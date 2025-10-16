@@ -64,11 +64,6 @@ export default function MeusPedidos() {
                 <img src={pedido.bolo.foto} className="fotoCarro rounded" alt="Foto Bolo" style={{ width: 100 }} />
             </td>
             <td className="px-6 py-4">
-                <p><b>Quantidade:</b> {pedido.quantidade}</p>
-                <p><b>Observação:</b> {pedido.observacao || "Nenhuma"}</p>
-                <p className='mt-2'><i>Pedido em: {dataFormatada(pedido.createdAt)}</i></p>
-            </td>
-            <td className="px-6 py-4">
                 {/* Status Tag - Usando tons de amber vibrante */}
                 <span className="bg-amber-200 text-amber-900 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-amber-900 dark:text-amber-300">
                     {pedido.status}
@@ -109,9 +104,7 @@ export default function MeusPedidos() {
                                 <th scope="col" className="px-6 py-3">
                                     Foto
                                 </th>
-                                <th scope="col" className="px-6 py-3">
-                                    Detalhes do Pedido
-                                </th>
+                    h>
                                 <th scope="col" className="px-6 py-3">
                                     Status
                                 </th>
