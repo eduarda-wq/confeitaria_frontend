@@ -7,6 +7,7 @@ import Login from './Login.tsx'
 import Detalhes from './Detalhes.tsx'
 import MeusPedidos from './MeusPedidos.tsx'
 import CadCliente from './CadCliente.tsx'
+import Produtos from './Produtos.tsx' //
 
 // ----------------- Rotas de Admin
 import AdminLayout from './admin/AdminLayout.tsx';
@@ -40,18 +41,23 @@ const rotas = createBrowserRouter([
       { path: "cadAdmin/novo", element: <AdminNovoAdmin /> }
     ],
   },
-  {
+{
     path: '/',
     element: <Layout />,
     children: [
       { index: true, element: <App /> },
       { path: 'login', element: <Login /> },
+      { path: 'produtos', element: <Produtos /> },
       { path: 'detalhes/:boloId', element: <Detalhes /> },
-      { path: 'meusPedidos', element: <MeusPedidos /> },
+      
+      // --- A CORREÇÃO ESTÁ AQUI ---
+      // Garanta que esta linha existe e está correta.
+      { path: 'meus-pedidos', element: <MeusPedidos /> }, 
+      
       { path: 'cadCliente', element: <CadCliente /> },
     ],
   },
-])
+]);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
